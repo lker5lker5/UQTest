@@ -1,12 +1,12 @@
 <?php
 
-    include 'function.php';
+    include 'functions.php';
 
 //    $start = $_GET['start'];
 //    $end = $_GET['end'];
 
     $result = array(); //used for testing the highest occurrence of every prime number
-    for($i = 2; $i <=20; $i++){
+    for($i = 2; $i <=20; $i++){ // for($i = $start; $i <= $end; $i++){
         $current = getPrimeAndOccurrence($i);
         foreach ($current as $key => $value) {
             if(array_key_exists($key, $result)){

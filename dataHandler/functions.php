@@ -6,6 +6,10 @@
  * Time: 1:29 PM
  */
 
+/**
+ * @param $number: a number needs to be analyzed
+ * @return array: an array contains all prime factors of that number
+ */
 function getPrimeNumber($number) {
     $primeArray = array();
     for($i = 2; $i <= $number; $i++){
@@ -20,6 +24,10 @@ function getPrimeNumber($number) {
     return $primeArray;
 }
 
+/**
+ * @param $number: the number needs to be parsed
+ * @return array: an associative array contains prime factors and corresponding occurrences
+ */
 function getPrimeAndOccurrence($number){
     $return = getPrimeNumber($number);
     $result = array();
@@ -31,6 +39,10 @@ function getPrimeAndOccurrence($number){
         }
     }
     return $result;
+}
+
+function isPrime($num){
+        
 }
 
 ?>

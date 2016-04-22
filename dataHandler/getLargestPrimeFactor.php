@@ -1,5 +1,5 @@
 <?php
-    include 'function.php';
+    include 'functions.php';
 
     $reqNum = 600851475143;
     //$number = $_POST['number'];
