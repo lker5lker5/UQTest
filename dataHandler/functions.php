@@ -41,8 +41,20 @@ function getPrimeAndOccurrence($number){
     return $result;
 }
 
+/**
+ * @param $num: the number needs to be tested
+ * @return bool: to indicate whether it is a prime or not
+ */
 function isPrime($num){
-        
+    $sqrt = floor(sqrt($num));
+    $isPrime = true;
+    for($i = 2; $i <= $sqrt; $i++){
+        if($num % $i == 0){
+            $isPrime = false;
+            return $isPrime;
+        }
+    }
+    return $isPrime;
 }
 
 ?>
