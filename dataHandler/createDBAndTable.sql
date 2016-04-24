@@ -2,7 +2,9 @@ CREATE DATABASE pro_sol;
 USE pro_sol;
 
 CREATE TABLE problemRecords(
-    test_number int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    test_answer VARCHAR(20) NOT NULL,
-    problem_id int(1) NOT NULL
+    attempt_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    problem_id VARCHAR (4) NOT NULL,
+    test_number VARCHAR (19) NOT NULL,
+    test_answer VARCHAR (19) NOT NULL,
+    exe_time VARCHAR (7) NOT NULL
 );

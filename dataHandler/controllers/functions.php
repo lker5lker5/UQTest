@@ -12,6 +12,7 @@
  */
 function getPrimeNumber($number) {
     $primeArray = array();
+    $number = abs($number);
     for($i = 2; $i <= $number; $i++){
         while($number != $i) {
             if (($number % $i)!= 0 )

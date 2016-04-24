@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="chrome=1,IE=edge" http-equiv="X-UA-Compatible" /><!--always use chrome or IE Edge to parse-->
     <meta name="description" content="The solution and analyses of largest prime, smallest multiple and Nth prime number">
     <meta name="author" content="Kaner Lu">
     <meta name="keyword" content="largest prime, smallest multiple, nth prime number, Kaner">
@@ -10,8 +11,9 @@
     <title>UQ Application - Kaner Lu </title>
     
     <!--CSS Files-->
+        <!--reset-->         <link rel="stylesheet" href="assets/css/normalize.css">
         <!--bootstrap3.3.6--><link rel="stylesheet" href="assets/css/bootstrap336.css">
-        <!--custom--><link rel="stylesheet" href="assets/css/custom.css">
+        <!--custom-->        <link rel="stylesheet" href="assets/css/custom.css">
 
     <!--JS Files-->
         <!--custom--><script type="text/javascript" src="assets/js/custom.js"></script>
@@ -41,16 +43,40 @@
     </header>
 
     <section id="main_content" class="container">
-        <article id="p1" class="row">
-            <section id="p1_content" class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8">
-                <p>The prime factors of 13195 are 5, 7, 13 and 29. What is the largest prime factor of the number 600851475143 ? (Click the blurred area to show the correct answer)</p>
-                <input type="text" name="p1_answer" placeholder="Your answer..." class="col-xs-12 col-md-9" />
-                <button class="btn btn-primary col-xs-12 col-md-offset-1 col-md-2">Check</button>
-                <b id="p1_answer" class="check-area blur-answer">Click check to see whether you are right or not</b>
-            </section>
+        <article id="p1" class="problem row">
+            <div id="p1_content" class="problem-content col-xs-12 col-sm-12 col-md-offset-2 col-md-8">
+                <p><b>Q1.</b>Calculate a number's largest prime factor (<i id="p1_attempts">attempts</i>).</p>
+                <p><i></i>attempts in total</p>
+                <div class="form-group">
+                    <label for="p1Input">Type in a number</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="p1Input" placeholder="Type in a number">
+                        <div class="input-group-addon">
+                            <a href="javascript:;" onclick="showAnswer('p1')">Show Answer</a>
+                        </div>
+                    </div>
+                </div>
 
-            <aside id="p1_explain">
+                <div class="answer col-xs-12">
+                    <b id="p1_answer" class="check-area blur-answer" title="Show answer" onclick="showAnswer(this.id)">Click to see the right answer</b>
+                </div>
 
+                <div class="explain-indicator">
+                    <b><a href='javascript:;' onclick="explain('p1_explain')">see explanation</a></b>
+                </div>
+
+                <div class="question-icon"></div>
+            </div>
+
+            <aside id="p1_explain" class="analysis col-xs-12 col-sm-12 col-md-offset-2 col-md-8">
+                <div id="p1_solution" class="problem-explain">
+                    <div class="analysis-detail">
+                        <p>A number is the multiple of several prime factors.
+                            <img src="assets/images/primes_analysis.jpg" alt="multiple of prime factors" />
+                        </p>
+                    </div>
+                    <div class="answer-icon"></div>
+                </div>
             </aside>
         </article>
 
