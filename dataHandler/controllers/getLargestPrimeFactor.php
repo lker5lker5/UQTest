@@ -6,5 +6,4 @@
     $result = getPrimeNumber($reqNum);
     //var_dump($result);
     echo end($result);
-
 ?>
