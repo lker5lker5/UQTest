@@ -61,7 +61,7 @@ function showAnswer(id){
                 proAns.innerHTML =  "The largest prime factor of " + value +" is <i style='text-decoration: underline;color: darkred'>" + result.result + "</i>." +
                     " The total execution time is <i style='text-decoration: underline;color: darkred'>" + result.time + "</i>.";
                 proAns.classList.remove('blur-answer');
-                insertAttempt(id.charAt(1),value,result.result,result.time);
+                console.log(result.insertInfo);
             }
         };
         xmlHttp.open("GET", window.location.href.replace('index.php','') + "dataHandler/controllers/getLargestPrimeFactor.php?number=" + value,true);
@@ -78,60 +78,60 @@ function showAnswer(id){
  * @param id: indicators of telling it is a random input or a sequence input
  */
 function showP2Answer(id){
-    var input;
-    var xmlHttp;
-    if(window.XMLHttpRequest){
-        xmlHttp = new XMLHttpRequest();
-    }else{
-        // for older browsers
-        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
     if(id === 1){
-        input = document.getElementById('p2Input_random').value;
+        var input = document.getElementById('p2Input_random').value;
         var value = input.replace(/\s/g, '');
-        if(/^[0-9]+[-]*/.test(value)){
+        var tester = /[0-9]*[\-]*/;
+        if(tester.test(value)){
+            var xmlHttp;
+            if(window.XMLHttpRequest){
+                xmlHttp = new XMLHttpRequest();
+            }else{
+                // for older browsers
+                xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
             xmlHttp.onreadystatechange = function() {
                 var target = document.getElementById('p2_answer');
                 var result = JSON.parse(xmlHttp.responseText);
-                target.innerHTML = "The smallest multiple of input is <i style='text-decoration: underline;color: darkred'>" + result.result + "</i>." +
-                    " The total execution time is <i style='text-decoration: underline;color: darkred'>" + result.time + "</i>.";
+                target.innerHTML = "The smallest multiple of input is <i style='text-decoration: underline;color: darkred'>" + result.result + "</i>." + " The total execution time is <i style='text-decoration: underline;color: darkred'>" + result.time + "</i>.";
                 target.classList.remove("blur-answer");
-                insertAttempt(2,value,result.result,result.time);
-            }
+                console.log(result.insertInfo);
+            };
             xmlHttp.open("GET", window.location.href.replace('index.php','') + "dataHandler/controllers/getSmallestMultipleRandom.php?input=" + value,true);
             xmlHttp.send();
         }else{
             alert("Invalid! Format: Two numbers are separated by a dash!");
         }
     }else if(id === 2){
+        var start = Number(document.getElementById('startNum').value.trim());
+        var quan = Number(document.getElementById('quantity').value.trim());
+        var inc = Number(document.getElementById('increment').value.trim());
 
-    }
-}
-
-/**
- * Each attempt will be recorded
- * @param pid: the problem id
- * @param num: the input
- * @param ans: the answer of the input
- * @param time: the execution time of the program
- */
-function insertAttempt(pid,num,ans,time){
-    var xmlHttp;
-    if(window.XMLHttpRequest){
-        xmlHttp = new XMLHttpRequest();
-    }else{
-        // for older browsers
-        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-
-    xmlHttp.onreadystatechange = function(){
-        if(4 == xmlHttp.readyState && 200 == xmlHttp.status){
-            console.log(xmlHttp.responseText);
+        if( quan <= 0) {
+            alert("Quantity number should be a integer greater than 0.");
         }
-    };
-    xmlHttp.open("GET", window.location.href.replace('index.php','') + "dataHandler/models/insertAttemptInfo.php?pid=" + pid +
-        "&num=" + num + "&ans=" + ans + "&time=" + time, true);
-    xmlHttp.send();
+        if((!Number.isInteger(quan)) || (!Number.isInteger(start)) || (!Number.isInteger(inc))) {
+            alert("Accepts integers only!");
+        }
+
+        var xmlHttp;
+        if(window.XMLHttpRequest){
+            xmlHttp = new XMLHttpRequest();
+        }else{
+            // for older browsers
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlHttp.onreadystatechange = function () {
+            var target = document.getElementById('p2_answer');
+            var result = JSON.parse(xmlHttp.responseText);
+            target.innerHTML = "The smallest multiple of input is <i style='text-decoration: underline;color: darkred'>" + result.result + "</i>." + " The total execution time is <i style='text-decoration: underline;color: darkred'>" + result.time + "</i>.";
+            target.classList.remove("blur-answer");
+            console.log(result.insertInfo);
+        };
+        xmlHttp.open("GET", window.location.href.replace('index.php','') + "dataHandler/controllers/getSmallestMultipleSequence.php?start=" + start + "&quan=" + quan + "&inc=" + inc, true);
+        xmlHttp.send();
+    }
+
 }
 
 /**
@@ -146,6 +146,10 @@ function showExplain(id){
     }
 }
 
+/**
+ * Close corresponding explain section
+ * @param id: indicator of problem
+ */
 function closeExplain(id){
     var explain = document.getElementById(id + "_explain");
     if(!explain.classList.contains('hidden')) {

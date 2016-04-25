@@ -1,12 +1,14 @@
 <?php
 
+    include '../dbCfg.php';
     include 'functions.php';
+    include '../models/insertAttemptInfo.php';
 
+    $time_start = microtime(true);
     $random = trim($_GET['input']);
     $numbers = explode("-", $random);
     $result = array(); //used for testing the highest occurrence of every prime number
-    $time_start = microtime(true);
-    for($i = 0; $i < count($numbers); $i++){ // for($i = $start; $i <= $end; $i++){
+    for($i = 0; $i < count($numbers); $i++){
         if(!$numbers[$i]){
             continue;
         } else {
@@ -28,6 +30,11 @@
     }
     $time_end = microtime(true);
     $time = round($time_end - $time_start, 5);
-    $return = array('result'=>$smallestMultiple, 'time'=>$time);
+
+    $conn = new mysqli($dbcfg['dbhost'], $dbcfg['dbuser'], $dbcfg['dbpwd'], $dbcfg['dbname']) or die ("Cannot connect to the DB!");
+    $insertInfo = insertAttempInfo($conn, 2, $random, $smallestMultiple, $time);
+    mysqli_close($conn);
+
+    $return = array('result'=>$smallestMultiple, 'time'=>$time, 'insertInfo'=>$insertInfo);
     echo json_encode($return);
 ?>

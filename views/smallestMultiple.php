@@ -23,9 +23,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="endNum" class="col-xs-2 control-label">End No.</label>
+                <label for="quantity" class="col-xs-2 control-label">Quantity</label>
                 <div class="col-xs-10">
-                    <input type="text" class="form-control" id="endNum" placeholder="The End Number" />
+                    <input type="text" class="form-control" id="quantity" placeholder="The number of the sequence" />
                 </div>
             </div>
             <div class="form-group">
@@ -39,13 +39,11 @@
                     <b id="p2_answer" class="check-area blur-answer" title="Show answer">Click to see the right answer</b>
                 </div>
                 <div class="col-xs-2">
-                    <button type="submit" class="btn btn-primary" onclick="showP2Answer(2)">Show Ans.</button>
+                    <input type="button" class="btn btn-primary" onclick="showP2Answer(2)" value="Show Ans." />
                 </div>
             </div>
         </form>
         <!--//a sequence-->
-
-
 
         <div class="explain-indicator">
             <b><a href='javascript:;' onclick="showExplain('p2')">see explanation</a></b>
