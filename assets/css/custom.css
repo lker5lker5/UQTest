@@ -1,6 +1,53 @@
+html,body{
+  width:100%;
+}
 /*======================================================================================================================
- *  The article style
+ *  The nav
  *====================================================================================================================*/
+header#web_header > h1{
+  margin: 0 !important;
+  padding: 20px 10px;
+  background: #3b67a7;
+  color: #f2f2f2;
+}
+
+nav > ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+nav > ul > li {
+  display: inline-block;
+}
+nav#problem_list_header li {
+  border-right: 1px solid #bbb;
+  line-height: 30px;
+}
+nav#problem_list_header li > a {
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+nav#problem_list_header li:last-child {
+  border: none;
+  float: right;
+}
+
+/*======================================================================================================================
+ *  Main Content Style
+ *====================================================================================================================*/
+section#main_content{
+  margin-top: 20px;
+}
+section#main_content > article {
+  margin-bottom: 15px;
+}
+form.form-horizontal > button{
+  float: right;
+}
 /*---------------------------------------------------question area----------------------------------------------------*/
 div.problem-content{
   background: #fff;
@@ -55,6 +102,7 @@ aside.analysis{
   background: #fff;
   border: 1px solid #efefef;
   padding: 35px 30px 35px 50px;
+  position: relative;
 }
 div.problem-explain p>img{
   display: inline-block;
@@ -69,229 +117,22 @@ div.answer-icon{
   position: absolute;
   top: 50%;
 }
+div.close-icon{
+  cursor:pointer;
+  width:30px;
+  height:30px;
+  background: url("../images/close-icon.png");
+  background-size: 30px 30px;
+  position:absolute;
+  top: 10px;
+  right:10px;
+}
+
+/*---------------------------------------------------Sequence area----------------------------------------------------*/
+div.sequence-solution > div.form-group{
+  margin-bottom: 20px;
+}
 /*======================================================================================================================
- * CSS animation part
+ * Footer part
  *====================================================================================================================*/
-.bounce {
-	padding: 10px;
-	background-color: #111;
-	color: #fff;
-	box-shadow:	0px 1px 3px 0px rgba(0, 0, 0, .3);
-	text-transform: uppercase;
-	position: relative;
-	font-weight: bold;
-	
-	-webkit-animation: bounce 800ms ease-out;
-	-moz-animation: bounce 800ms ease-out;
-	-o-animation: bounce 800ms ease-out;
-	animation: bounce 800ms ease-out;
-}
 
-/* Webkit, Chrome and Safari */
-
-@-webkit-keyframes bounce {
-  0% {
-	-webkit-transform:translateY(-100%);
-    opacity: 0;
-  }
-  5% {
-  	-webkit-transform:translateY(-100%);
-    opacity: 0;
-  }
-  15% {
-  	-webkit-transform:translateY(0);
-    padding-bottom: 5px;
-  }
-  30% {
-  	-webkit-transform:translateY(-50%);
-  }
-  40% {
-  	-webkit-transform:translateY(0%);
-    padding-bottom: 6px;
-  }
-  50% {
-  	-webkit-transform:translateY(-30%);
-  }
-  70% {
-  	-webkit-transform:translateY(0%);
-    padding-bottom: 7px;
-  }
-  80% {
-  	-webkit-transform:translateY(-15%);
-  }
-  90% {
-  	-webkit-transform:translateY(0%);
-  	padding-bottom: 8px;
-  }
-  95% {
-  	-webkit-transform:translateY(-10%);
-  }
-  97% {
-  	-webkit-transform:translateY(0%);
-  	padding-bottom: 9px;
-  }
-  99% {
-  	-webkit-transform:translateY(-5%);
-  }
-  100% {
-  	-webkit-transform:translateY(0);
-  	padding-bottom: 9px;
-    opacity: 1;
-  }
-}
-
-/* Mozilla Firefox 15 below */
-@-moz-keyframes bounce {
-  0% {
-	-moz-transform:translateY(-100%);
-    opacity: 0;
-  }
-  5% {
-  	-moz-transform:translateY(-100%);
-    opacity: 0;
-  }
-  15% {
-  	-moz-transform:translateY(0);
-    padding-bottom: 5px;
-  }
-  30% {
-  	-moz-transform:translateY(-50%);
-  }
-  40% {
-  	-moz-transform:translateY(0%);
-    padding-bottom: 6px;
-  }
-  50% {
-  	-moz-transform:translateY(-30%);
-  }
-  70% {
-  	-moz-transform:translateY(0%);
-    padding-bottom: 7px;
-  }
-  80% {
-  	-moz-transform:translateY(-15%);
-  }
-  90% {
-  	-moz-transform:translateY(0%);
-  	padding-bottom: 8px;
-  }
-  95% {
-  	-moz-transform:translateY(-10%);
-  }
-  97% {
-  	-moz-transform:translateY(0%);
-  	padding-bottom: 9px;
-  }
-  99% {
-  	-moz-transform:translateY(-5%);
-  }
-  100% {
-  	-moz-transform:translateY(0);
-  	padding-bottom: 9px;
-    opacity: 1;
-  }
-}
-
-/* Opera 12.0 */
-@-o-keyframes bounce {
-  0% {
-	-o-transform:translateY(-100%);
-    opacity: 0;
-  }
-  5% {
-  	-o-transform:translateY(-100%);
-    opacity: 0;
-  }
-  15% {
-  	-o-transform:translateY(0);
-    padding-bottom: 5px;
-  }
-  30% {
-  	-o-transform:translateY(-50%);
-  }
-  40% {
-  	-o-transform:translateY(0%);
-    padding-bottom: 6px;
-  }
-  50% {
-  	-o-transform:translateY(-30%);
-  }
-  70% {
-  	-o-transform:translateY(0%);
-    padding-bottom: 7px;
-  }
-  80% {
-  	-o-transform:translateY(-15%);
-  }
-  90% {
-  	-o-transform:translateY(0%);
-  	padding-bottom: 8px;
-  }
-  95% {
-  	-o-transform:translateY(-10%);
-  }
-  97% {
-  	-o-transform:translateY(0%);
-  	padding-bottom: 9px;
-  }
-  99% {
-  	-o-transform:translateY(-5%);
-  }
-  100% {
-  	-o-transform:translateY(0);
-  	padding-bottom: 9px;
-    opacity: 1;
-  }
-}
-
-/* W3, Opera 12+, Firefox 16+ */
-@keyframes bounce {
-  0% {
-	transform:translateY(-100%);
-    opacity: 0;
-  }
-  5% {
-  	transform:translateY(-100%);
-    opacity: 0;
-  }
-  15% {
-  	transform:translateY(0);
-    padding-bottom: 5px;
-  }
-  30% {
-  	transform:translateY(-50%);
-  }
-  40% {
-  	transform:translateY(0%);
-    padding-bottom: 6px;
-  }
-  50% {
-  	transform:translateY(-30%);
-  }
-  70% {
-  	transform:translateY(0%);
-    padding-bottom: 7px;
-  }
-  80% {
-  	transform:translateY(-15%);
-  }
-  90% {
-  	transform:translateY(0%);
-  	padding-bottom: 8px;
-  }
-  95% {
-  	transform:translateY(-7%);
-  }
-  97% {
-  	transform:translateY(0%);
-  	padding-bottom: 9px;
-  }
-  99% {
-  	transform:translateY(-3%);
-  }
-  100% {
-  	transform:translateY(0);
-  	padding-bottom: 9px;
-    opacity: 1;
-  }
-}

@@ -19,7 +19,10 @@
     $result = mysqli_query($conn, $count);
     if($result){
         $row = mysqli_fetch_array($result);
-        echo  $row[0];
+        if($row[0])
+            echo  $row[0];
+        else
+            echo 0;
     }else{
         echo "Error: ".$count."<br>".mysqli_error($conn);
     }

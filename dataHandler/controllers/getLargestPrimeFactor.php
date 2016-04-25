@@ -12,7 +12,7 @@
         $time_end = microtime(true);
         //var_dump($result);
         $execution_time = round($time_end - $time_start, 5);
-        $result = array("largest" => end($primes), "time" => $execution_time);
+        $result = array("result" => end($primes), "time" => $execution_time);
         echo json_encode($result);
     }
 ?>

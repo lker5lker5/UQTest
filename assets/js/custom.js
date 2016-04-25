@@ -2,7 +2,7 @@
 //     $(function(){
 //         $('#p1_answer').on('click', function(){
 //             $.ajax({
-//                 url:window.location.href.replace('index.html','') + '/dataHandler/controllers/getLargestPrimeFactor.php',
+//                 url:window.location.href.replace('index.php','') + '/dataHandler/controllers/getLargestPrimeFactor.php',
 //                 success: function(result){
 //                     $('#p1_answer')
 //                 }
@@ -11,21 +11,27 @@
 //     });
 // })(jQuery);
 
-var p1xmlHttp;
-if(window.XMLHttpRequest){
-    p1xmlHttp = new XMLHttpRequest();
-}else{
-    // for older browsers
-    p1xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-}
-
-p1xmlHttp.onreadystatechange = function(){
-    if(4 == p1xmlHttp.readyState && 200 == p1xmlHttp.status){
-        document.getElementById('p1_attempts').innerHTML = p1xmlHttp.responseText + " attempts";
+/**
+ * The method of getting the number of attempts of a specific problem
+ * @param pid: the id represents the problem
+ */
+function getAttempts(pid){
+    var xmlHttp;
+    if(window.XMLHttpRequest){
+        xmlHttp = new XMLHttpRequest();
+    }else{
+        // for older browsers
+        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-};
-p1xmlHttp.open("GET", window.location.href.replace('index.html','') + "dataHandler/controllers/getProblemAttempts.php?pid=" + 1,true);
-p1xmlHttp.send();
+
+    xmlHttp.onreadystatechange = function(){
+        if(4 == xmlHttp.readyState && 200 == xmlHttp.status){
+            document.getElementById('p'+ pid + '_attempts').innerHTML = xmlHttp.responseText + " attempts";
+        }
+    };
+    xmlHttp.open("GET", window.location.href.replace('index.php','') + "dataHandler/controllers/getProblemAttempts.php?pid=" + pid,true);
+    xmlHttp.send();
+}
 
 /**
  * Click and show the correct answer
@@ -52,16 +58,53 @@ function showAnswer(id){
                 var result = JSON.parse(xmlHttp.responseText);
                 var proAns = document.getElementById(id + '_answer');
 //console.log(result);
-                proAns.innerHTML =  "The largest prime factor of " + value +" is <i style='text-decoration: underline;color: darkred'>" + result.largest + "</i>." +
+                proAns.innerHTML =  "The largest prime factor of " + value +" is <i style='text-decoration: underline;color: darkred'>" + result.result + "</i>." +
                     " The total execution time is <i style='text-decoration: underline;color: darkred'>" + result.time + "</i>.";
                 proAns.classList.remove('blur-answer');
-                insertAttempt(id.charAt(1),value,result.largest,result.time);
+                insertAttempt(id.charAt(1),value,result.result,result.time);
             }
         };
-        xmlHttp.open("GET", window.location.href.replace('index.html','') + "dataHandler/controllers/getLargestPrimeFactor.php?number=" + value,true);
+        xmlHttp.open("GET", window.location.href.replace('index.php','') + "dataHandler/controllers/getLargestPrimeFactor.php?number=" + value,true);
         xmlHttp.send();
     }else{
         alert("Number only");
+    }
+}
+
+/**
+ * Show several numbers' smallest multiple, and there are two cases
+ * 1. some random numbers
+ * 2. a series of numbers (e.g. 1,3,5,7)
+ * @param id: indicators of telling it is a random input or a sequence input
+ */
+function showP2Answer(id){
+    var input;
+    var xmlHttp;
+    if(window.XMLHttpRequest){
+        xmlHttp = new XMLHttpRequest();
+    }else{
+        // for older browsers
+        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    if(id === 1){
+        input = document.getElementById('p2Input_random').value;
+        var value = input.replace(/\s/g, '');
+        if(/^[0-9]+[-]*/.test(value)){
+            xmlHttp.onreadystatechange = function() {
+                var target = document.getElementById('p2_answer');
+                var result = JSON.parse(xmlHttp.responseText);
+                target.innerHTML = "The smallest multiple of input is <i style='text-decoration: underline;color: darkred'>" + result.result + "</i>." +
+                    " The total execution time is <i style='text-decoration: underline;color: darkred'>" + result.time + "</i>.";
+                target.classList.remove("blur-answer");
+                insertAttempt(2,value,result.result,result.time);
+            }
+            xmlHttp.open("GET", window.location.href.replace('index.php','') + "dataHandler/controllers/getSmallestMultipleRandom.php?input=" + value,true);
+            xmlHttp.send();
+        }else{
+            alert("Invalid! Format: Two numbers are separated by a dash!");
+        }
+    }else if(id === 2){
+
     }
 }
 
@@ -86,7 +129,7 @@ function insertAttempt(pid,num,ans,time){
             console.log(xmlHttp.responseText);
         }
     };
-    xmlHttp.open("GET", window.location.href.replace('index.html','') + "dataHandler/models/insertAttemptInfo.php?pid=" + pid +
+    xmlHttp.open("GET", window.location.href.replace('index.php','') + "dataHandler/models/insertAttemptInfo.php?pid=" + pid +
         "&num=" + num + "&ans=" + ans + "&time=" + time, true);
     xmlHttp.send();
 }
@@ -95,6 +138,18 @@ function insertAttempt(pid,num,ans,time){
  * Click and shows the analysis
  * @param id: problem id
  */
-function explain(id){
+function showExplain(id){
+    var explain = document.getElementById(id + "_explain");
+    if(explain.classList.contains('hidden')) {
+        explain.classList.remove('hidden');
+        explain.classList.add('bounce');
+    }
+}
 
+function closeExplain(id){
+    var explain = document.getElementById(id + "_explain");
+    if(!explain.classList.contains('hidden')) {
+        explain.classList.add('hidden');
+        explain.classList.remove('bounce');
+    }
 }
