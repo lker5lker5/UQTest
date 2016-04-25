@@ -4,9 +4,9 @@
     include '../models/insertAttemptInfo.php';
 
     $time_start = microtime(true);
-    $start = $_GET['start'];
-    $quan = $_GET['quan'];
-    $increment = $_GET['inc'];
+    $start = intval($_GET['start']);
+    $quan = intval($_GET['quan']);
+    $increment = intval($_GET['inc']);
 
     $last = $start + $increment * ($quan - 1);
     $result = array(); //used for testing the highest occurrence of every prime number

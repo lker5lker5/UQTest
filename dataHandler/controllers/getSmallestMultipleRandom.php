@@ -9,10 +9,10 @@
     $numbers = explode("-", $random);
     $result = array(); //used for testing the highest occurrence of every prime number
     for($i = 0; $i < count($numbers); $i++){
-        if(!$numbers[$i]){
+        if(!intval($numbers[$i])){
             continue;
         } else {
-            $current = getPrimeAndOccurrence(trim($numbers[$i]));
+            $current = getPrimeAndOccurrence(trim(intval($numbers[$i])));
             foreach ($current as $key => $value) {
                 if (array_key_exists($key, $result)) {
                     if ($result[$key] < $value)

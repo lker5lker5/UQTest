@@ -5,7 +5,7 @@
     include '../models/insertAttemptInfo.php';
 
     $time_start = microtime(true);
-    $number = $_GET['number'];
+    $number = intval($_GET['number']);
     if($number > PHP_INT_MAX){
         $result=array("largest" => "The number is too large, the maximum number is 9223372036854775807", "time" => 0);
         echo json_encode($result);

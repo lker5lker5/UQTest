@@ -19,7 +19,8 @@
                 // the section of calculating smallest multiple
                 include 'views/smallestMultiple.php';
 
-                // the section of calculating smallest multiple
+                // the section of calculating Nth prime number
+                include 'views/nthPrime.php';
             ?>
         </section>
         <!--//main content-->
@@ -39,7 +40,7 @@
             window.onload =  function(){
                 getAttempts(1);
                 getAttempts(2);
-//                getAttempts(3);
+                getAttempts(3);
             }
         </script>
     </body>

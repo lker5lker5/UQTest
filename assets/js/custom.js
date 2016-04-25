@@ -35,10 +35,9 @@ function getAttempts(pid){
 
 /**
  * Click and show the correct answer
- * @param id: the problem id
  */
-function showAnswer(id){
-    var input = document.getElementById(id + 'Input');
+function showP1Answer(){
+    var input = document.getElementById('p1Input');
     var value = Number(input.value.trim());
     if(value === 0 || (!Number.isInteger(value))){
         alert("Please give a natural number other than 0.");
@@ -55,11 +54,14 @@ function showAnswer(id){
 
         xmlHttp.onreadystatechange = function(){
             if(4 == xmlHttp.readyState && 200 == xmlHttp.status){
+                getAttempts(1);
+                resetExceptCurrent(1);
                 var result = JSON.parse(xmlHttp.responseText);
-                var proAns = document.getElementById(id + '_answer');
+                var proAns = document.getElementById('p1_answer');
 //console.log(result);
-                proAns.innerHTML =  "The largest prime factor of " + value +" is <i style='text-decoration: underline;color: darkred'>" + result.result + "</i>." +
-                    " The total execution time is <i style='text-decoration: underline;color: darkred'>" + result.time + "</i>.";
+                proAns.innerHTML =  "The largest prime factor of " + value +" is <i style='text-decoration: underline;color: darkred'>"
+                    + result.result + "</i>." + " The total execution time is <i style='text-decoration: underline;color: darkred'>"
+                    + result.time + "</i>s.";
                 proAns.classList.remove('blur-answer');
                 console.log(result.insertInfo);
             }
@@ -75,7 +77,7 @@ function showAnswer(id){
  * Show several numbers' smallest multiple, and there are two cases
  * 1. some random numbers
  * 2. a series of numbers (e.g. 1,3,5,7)
- * @param id: indicators of telling it is a random input or a sequence input
+ * @param: indicators of telling it is a random input or a sequence input
  */
 function showP2Answer(id){
     if(id === 1){
@@ -91,13 +93,18 @@ function showP2Answer(id){
                 xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
             }
             xmlHttp.onreadystatechange = function() {
+                getAttempts(2);
+                resetExceptCurrent(2);
                 var target = document.getElementById('p2_answer');
                 var result = JSON.parse(xmlHttp.responseText);
-                target.innerHTML = "The smallest multiple of input is <i style='text-decoration: underline;color: darkred'>" + result.result + "</i>." + " The total execution time is <i style='text-decoration: underline;color: darkred'>" + result.time + "</i>.";
+                target.innerHTML = "The smallest multiple of input is <i style='text-decoration: underline;color: darkred'>"
+                    + result.result + "</i>." + " The total execution time is <i style='text-decoration: underline;color: darkred'>"
+                    + result.time + "</i>s.";
                 target.classList.remove("blur-answer");
                 console.log(result.insertInfo);
             };
-            xmlHttp.open("GET", window.location.href.replace('index.php','') + "dataHandler/controllers/getSmallestMultipleRandom.php?input=" + value,true);
+            xmlHttp.open("GET", window.location.href.replace('index.php','') +
+                "dataHandler/controllers/getSmallestMultipleRandom.php?input=" + value,true);
             xmlHttp.send();
         }else{
             alert("Invalid! Format: Two numbers are separated by a dash!");
@@ -122,16 +129,58 @@ function showP2Answer(id){
             xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
         xmlHttp.onreadystatechange = function () {
+            getAttempts(2);
+            resetExceptCurrent(2);
             var target = document.getElementById('p2_answer');
             var result = JSON.parse(xmlHttp.responseText);
-            target.innerHTML = "The smallest multiple of input is <i style='text-decoration: underline;color: darkred'>" + result.result + "</i>." + " The total execution time is <i style='text-decoration: underline;color: darkred'>" + result.time + "</i>.";
+            target.innerHTML = "The smallest multiple of input is <i style='text-decoration: underline;color: darkred'>"
+                + result.result + "</i>." + " The total execution time is <i style='text-decoration: underline;color: darkred'>"
+                + result.time + "</i>s.";
             target.classList.remove("blur-answer");
             console.log(result.insertInfo);
         };
-        xmlHttp.open("GET", window.location.href.replace('index.php','') + "dataHandler/controllers/getSmallestMultipleSequence.php?start=" + start + "&quan=" + quan + "&inc=" + inc, true);
+        xmlHttp.open("GET", window.location.href.replace('index.php','') + "dataHandler/controllers/getSmallestMultipleSequence.php?start="
+            + start + "&quan=" + quan + "&inc=" + inc, true);
         xmlHttp.send();
     }
 
+}
+
+function showP3Answer(){
+    var input = document.getElementById('p3Input');
+    var value = Number(input.value.trim());
+    if(value < 1 || (!Number.isInteger(value))){
+        alert("Please give an integer greater than 0.");
+    }else if (value > Number.MAX_SAFE_INTEGER){
+        alert("The number is too large!");
+    }else if(Number.isInteger(value)){
+        var xmlHttp;
+        if(window.XMLHttpRequest){
+            xmlHttp = new XMLHttpRequest();
+        }else{
+            // for older browsers
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xmlHttp.onreadystatechange = function(){
+            if(4 == xmlHttp.readyState && 200 == xmlHttp.status){
+                getAttempts(3);
+                resetExceptCurrent(3);
+                var result = JSON.parse(xmlHttp.responseText);
+                var proAns = document.getElementById('p3_answer');
+//console.log(result);
+                proAns.innerHTML =  "The position of " + value + " in the prime's list is <i style='text-decoration: underline;color: darkred'>"
+                    + result.result + "</i>." + " The total execution time is <i style='text-decoration: underline;color: darkred'>"
+                    + result.time + "</i>s.";
+                proAns.classList.remove('blur-answer');
+                console.log(result.insertInfo);
+            }
+        };
+        xmlHttp.open("GET", window.location.href.replace('index.php','') + "dataHandler/controllers/getNthPrime.php?pos=" + value,true);
+        xmlHttp.send();
+    }else{
+        alert("Number only! ");
+    }
 }
 
 /**
@@ -156,4 +205,67 @@ function closeExplain(id){
         explain.classList.add('hidden');
         explain.classList.remove('bounce');
     }
+}
+
+/**
+ * After click, the inputs of other two problems should be reset
+ * @param pid
+ */
+function resetExceptCurrent(pid){
+    if(pid === 1){
+        resetP2Inputs();
+        resetP3Inputs();
+    }else if(pid === 2){
+        resetP1Inputs();
+        resetP3Inputs();
+    }else if(pid === 3){
+        resetP1Inputs();
+        resetP2Inputs();
+    }
+}
+
+/**
+ * reset related info of problem 1
+ */
+function resetP1Inputs(){
+    document.getElementById('p1Input').value = "";
+
+    document.getElementById('p1_answer').innerHTML = "Click to see the answer";
+    document.getElementById('p1_answer').classList.add('blur-answer');
+
+    if(!document.getElementById('p1_explain').classList.contains('hidden'))
+        closeExplain('p1');
+}
+
+/**
+ * reset related info of problem 2
+ */
+function resetP2Inputs(){
+    // reset random input
+    document.getElementById('p2Input_random').value = "";
+
+    // reset sequence input
+    document.getElementById('startNum').value = "";
+    document.getElementById('quantity').value = "";
+    document.getElementById('increment').value = "";
+
+    // blur the answer area
+    document.getElementById('p2_answer').innerHTML = "Click to see the answer";
+    document.getElementById('p2_answer').classList.add("blur-answer");
+
+    if(!document.getElementById('p2_explain').classList.contains('hidden'))
+        closeExplain('p2');
+}
+
+/**
+ * reset related info of problem 2
+ */
+function resetP3Inputs(){
+    document.getElementById('p3Input').value = "";
+
+    document.getElementById('p3_answer').innerHTML = "Click to see the answer";
+    document.getElementById('p3_answer').classList.add('blur-answer');
+
+    if(!document.getElementById('p3_explain').classList.contains('hidden'))
+        closeExplain('p3');
 }

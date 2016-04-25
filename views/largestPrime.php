@@ -6,7 +6,7 @@
             <div class="input-group">
                 <input type="text" class="form-control" id="p1Input" placeholder="Type in a number">
                 <div class="input-group-addon">
-                    <a href="javascript:;" onclick="showAnswer('p1')">Show Answer</a>
+                    <a href="javascript:;" onclick="showP1Answer()">Show Answer</a>
                 </div>
             </div>
         </div>
