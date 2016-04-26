@@ -46,7 +46,7 @@
         $number = $number/$i;
     }
 }
-array_push($primeArray, $number);
+<b>array_push</b>($primeArray, $number);
 </code></pre>
             </div>
             <div class="answer-icon"></div>
