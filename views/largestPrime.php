@@ -26,8 +26,28 @@
         <div id="p1_solution" class="problem-explain">
             <div class="analysis-detail">
                 <p>A number is the multiple of several prime factors.
-                    <img src="assets/images/primes_analysis.jpg" alt="multiple of prime factors" />
+                    <img src="assets/images/primes-analysis.jpg" alt="multiple of prime factors" />
                 </p>
+                <p>
+                    So every time a prime is found, we can use the number divided by the first prime number to get the result,
+                    and use the result divided the next prime until it cannot further decomposed.When the prime is found,
+                    it is added into the result array. Finally, the last element of the array is the result of the question.
+                </p>
+<pre><code id="code">
+<b>for</b>($i = 2; $i <= $number; $i++){
+    <b>while</b>($number != $i) {
+        <i>//a prime can only be divided exactly by 1 and itself;
+        //remainder indicates that it can be further divided</i>
+        <b>if</b> (($number % $i)!= 0 )
+            break;
+        <b>array_push</b>($primeArray, $i);
+
+        <i>// assign the result to the original number</i>
+        $number = $number/$i;
+    }
+}
+array_push($primeArray, $number);
+</code></pre>
             </div>
             <div class="answer-icon"></div>
             <div class="close-icon" title="close" onclick="closeExplain('p1')"></div>

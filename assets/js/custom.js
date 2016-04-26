@@ -1,15 +1,60 @@
-// (function($){
-//     $(function(){
-//         $('#p1_answer').on('click', function(){
-//             $.ajax({
-//                 url:window.location.href.replace('index.php','') + '/dataHandler/controllers/getLargestPrimeFactor.php',
-//                 success: function(result){
-//                     $('#p1_answer')
-//                 }
-//             });
-//         });
-//     });
-// })(jQuery);
+/**
+ * When the input is focused, clear previous input values
+ */
+(function($){
+    $(function(){
+        $('#p1Input').focus(function(){
+            resetP1Inputs();
+        });
+
+        $('#p3Input').focus(function(){
+            resetP3Inputs();
+        });
+
+        $('#p2Input_random').focus(function(){
+           resetP2Inputs();
+        });
+
+        $('#startNum').focus(function(){
+            $('#p2Input_random').val('');
+            $('#startNum').val('');
+
+            // blur the answer area
+            if(!$('#p2_answer').hasClass('blur-answer')) {
+                $('#p2_answer').text("Click to see the right answer");
+                $('#p2_answer').addClass("blur-answer");
+                $('#p2_answer').removeClass("bounce");
+                closeExplain('p2');
+            }
+        });
+
+        $('#quantity').focus(function(){
+            $('#p2Input_random').val('');
+            $('#quantity').val('');
+
+            // blur the answer area
+            if(!$('#p2_answer').hasClass('blur-answer')) {
+                $('#p2_answer').text("Click to see the right answer");
+                $('#p2_answer').addClass("blur-answer");
+                $('#p2_answer').removeClass("bounce");
+                closeExplain('p2');
+            }
+        });
+
+        $('#increment').focus(function(){
+            $('#p2Input_random').val('');
+            $('#increment').val('');
+
+            // blur the answer area
+            if(!$('#p2_answer').hasClass('blur-answer')) {
+                $('#p2_answer').text("Click to see the right answer");
+                $('#p2_answer').addClass("blur-answer");
+                $('#p2_answer').removeClass("bounce");
+                closeExplain('p2');
+            }
+        });
+    });
+})(jQuery);
 
 /**
  * The method of getting the number of attempts of a specific problem
@@ -29,7 +74,7 @@ function getAttempts(pid){
             document.getElementById('p'+ pid + '_attempts').innerHTML = xmlHttp.responseText + " attempts";
         }
     };
-    xmlHttp.open("GET", window.location.href.replace('index.php','') + "dataHandler/controllers/getProblemAttempts.php?pid=" + pid,true);
+    xmlHttp.open("GET", window.location.href.replace(/index.*/g,'') + "dataHandler/controllers/getProblemAttempts.php?pid=" + pid,true);
     xmlHttp.send();
 }
 
@@ -66,7 +111,7 @@ function showP1Answer(){
                 console.log(result.insertInfo);
             }
         };
-        xmlHttp.open("GET", window.location.href.replace('index.php','') + "dataHandler/controllers/getLargestPrimeFactor.php?number=" + value,true);
+        xmlHttp.open("GET", window.location.href.replace(/index.*/g,'') + "dataHandler/controllers/getLargestPrimeFactor.php?number=" + value,true);
         xmlHttp.send();
     }else{
         alert("Number only");
@@ -103,7 +148,7 @@ function showP2Answer(id){
                 target.classList.remove("blur-answer");
                 console.log(result.insertInfo);
             };
-            xmlHttp.open("GET", window.location.href.replace('index.php','') +
+            xmlHttp.open("GET", window.location.href.replace(/index.*/g,'') +
                 "dataHandler/controllers/getSmallestMultipleRandom.php?input=" + value,true);
             xmlHttp.send();
         }else{
@@ -139,7 +184,7 @@ function showP2Answer(id){
             target.classList.remove("blur-answer");
             console.log(result.insertInfo);
         };
-        xmlHttp.open("GET", window.location.href.replace('index.php','') + "dataHandler/controllers/getSmallestMultipleSequence.php?start="
+        xmlHttp.open("GET", window.location.href.replace(/index.*/g,'') + "dataHandler/controllers/getSmallestMultipleSequence.php?start="
             + start + "&quan=" + quan + "&inc=" + inc, true);
         xmlHttp.send();
     }
@@ -176,7 +221,7 @@ function showP3Answer(){
                 console.log(result.insertInfo);
             }
         };
-        xmlHttp.open("GET", window.location.href.replace('index.php','') + "dataHandler/controllers/getNthPrime.php?pos=" + value,true);
+        xmlHttp.open("GET", window.location.href.replace(/index.*/g,'') + "dataHandler/controllers/getNthPrime.php?pos=" + value,true);
         xmlHttp.send();
     }else{
         alert("Number only! ");
@@ -230,7 +275,7 @@ function resetExceptCurrent(pid){
 function resetP1Inputs(){
     document.getElementById('p1Input').value = "";
 
-    document.getElementById('p1_answer').innerHTML = "Click to see the answer";
+    document.getElementById('p1_answer').innerHTML = "Click to see the right answer";
     document.getElementById('p1_answer').classList.add('blur-answer');
 
     if(!document.getElementById('p1_explain').classList.contains('hidden'))
@@ -250,7 +295,7 @@ function resetP2Inputs(){
     document.getElementById('increment').value = "";
 
     // blur the answer area
-    document.getElementById('p2_answer').innerHTML = "Click to see the answer";
+    document.getElementById('p2_answer').innerHTML = "Click to see the right answer";
     document.getElementById('p2_answer').classList.add("blur-answer");
 
     if(!document.getElementById('p2_explain').classList.contains('hidden'))
@@ -263,7 +308,7 @@ function resetP2Inputs(){
 function resetP3Inputs(){
     document.getElementById('p3Input').value = "";
 
-    document.getElementById('p3_answer').innerHTML = "Click to see the answer";
+    document.getElementById('p3_answer').innerHTML = "Click to see the right answer";
     document.getElementById('p3_answer').classList.add('blur-answer');
 
     if(!document.getElementById('p3_explain').classList.contains('hidden'))

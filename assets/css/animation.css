@@ -1,13 +1,19 @@
 /*======================================================================================================================
  * CSS animation part
  *====================================================================================================================*/
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
 .bounce {
-    padding: 10px;
+    padding: 35px 30px 25px 50px;
     background-color: #111;
     color: #222;
     box-shadow:	0px 1px 3px 0px rgba(0, 0, 0, .3);
     position: relative;
-    font-weight: bold;
 
     -webkit-animation: bounce 800ms ease-out;
     -moz-animation: bounce 800ms ease-out;
@@ -68,110 +74,6 @@
     }
 }
 
-/* Mozilla Firefox 15 below */
-@-moz-keyframes bounce {
-    0% {
-        -moz-transform:translateY(-100%);
-        opacity: 0;
-    }
-    5% {
-        -moz-transform:translateY(-100%);
-        opacity: 0;
-    }
-    15% {
-        -moz-transform:translateY(0);
-        padding-bottom: 5px;
-    }
-    30% {
-        -moz-transform:translateY(-50%);
-    }
-    40% {
-        -moz-transform:translateY(0%);
-        padding-bottom: 6px;
-    }
-    50% {
-        -moz-transform:translateY(-30%);
-    }
-    70% {
-        -moz-transform:translateY(0%);
-        padding-bottom: 7px;
-    }
-    80% {
-        -moz-transform:translateY(-15%);
-    }
-    90% {
-        -moz-transform:translateY(0%);
-        padding-bottom: 8px;
-    }
-    95% {
-        -moz-transform:translateY(-10%);
-    }
-    97% {
-        -moz-transform:translateY(0%);
-        padding-bottom: 9px;
-    }
-    99% {
-        -moz-transform:translateY(-5%);
-    }
-    100% {
-        -moz-transform:translateY(0);
-        padding-bottom: 9px;
-        opacity: 1;
-    }
-}
-
-/* Opera 12.0 */
-@-o-keyframes bounce {
-    0% {
-        -o-transform:translateY(-100%);
-        opacity: 0;
-    }
-    5% {
-        -o-transform:translateY(-100%);
-        opacity: 0;
-    }
-    15% {
-        -o-transform:translateY(0);
-        padding-bottom: 5px;
-    }
-    30% {
-        -o-transform:translateY(-50%);
-    }
-    40% {
-        -o-transform:translateY(0%);
-        padding-bottom: 6px;
-    }
-    50% {
-        -o-transform:translateY(-30%);
-    }
-    70% {
-        -o-transform:translateY(0%);
-        padding-bottom: 7px;
-    }
-    80% {
-        -o-transform:translateY(-15%);
-    }
-    90% {
-        -o-transform:translateY(0%);
-        padding-bottom: 8px;
-    }
-    95% {
-        -o-transform:translateY(-10%);
-    }
-    97% {
-        -o-transform:translateY(0%);
-        padding-bottom: 9px;
-    }
-    99% {
-        -o-transform:translateY(-5%);
-    }
-    100% {
-        -o-transform:translateY(0);
-        padding-bottom: 9px;
-        opacity: 1;
-    }
-}
-
 /* W3, Opera 12+, Firefox 16+ */
 @keyframes bounce {
     0% {
@@ -222,4 +124,81 @@
         padding-bottom: 9px;
         opacity: 1;
     }
+}
+
+@-webkit-keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(-20px);
+        transform: translateX(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(-20px);
+        -ms-transform: translateX(-20px);
+        transform: translateX(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+
+.fadeInLeft {
+    -webkit-animation-name: fadeInLeft;
+    animation-name: fadeInLeft;
+}
+
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    50% {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+
+    50% {
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+.pulse {
+    -webkit-animation-name: pulse;
+    animation-name: pulse;
 }

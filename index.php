@@ -27,21 +27,33 @@
 
         <!--Footer-->
         <footer id="web_footer">
-            <nav id="problem_list_footer">
-                <ul>
-                    <li><a href="index.html#p1">Largest Prime</a></li>
-                    <li><a href="index.html#p2">Smallest Multiple</a></li>
-                    <li><a href="index.html#p3">The Nth Prime</a></li>
-                </ul>
-            </nav>
+            <?php
+                include 'views/web-footer.php';
+            ?>
         </footer>
         <!--Footer-->
+        <a href="javascript:;" id="toTop"></a>
         <script>
             window.onload =  function(){
                 getAttempts(1);
                 getAttempts(2);
                 getAttempts(3);
-            }
+            };
+
+            $(document).ready(function() {
+                $( window ).scroll(function() {
+                    var scroll = $(window).scrollTop();
+                    if(scroll > 20){
+                        $('#toTop').show();
+                        $('#toTop').click(function(e){
+                            e.preventDefault();
+                            $('html,body').stop(true, false).animate ({scrollTop:0}, 500);
+                        });
+                    }else{
+                        $('#toTop').hide();
+                    }
+                });
+            });
         </script>
     </body>
 </html>
