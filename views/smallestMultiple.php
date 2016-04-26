@@ -59,24 +59,46 @@
                     <img src="assets/images/smallest-multiple.png" alt="the calculation of smallest multiple" />
                 </p>
                 <p>
-                    So every time a prime is found, we can use the number divided by the first prime number to get the result,
-                    and use the result divided the next prime until it cannot further decomposed.When the prime is found,
-                    it is added into the result array. Finally, the last element of the array is the result of the question.
+                    So what we need to do is to decompose each number recording the occurrences of each prime of that number;
+                    then, we need to compare among them and find the highest occurrences of each prime appeared, and the result
+                    is the multiple of exponentiation.
                 </p>
-<pre><code id="code">
-<b>for</b>($i = 2; $i <= $number; $i++){
-<b>while</b>($number != $i) {
-<i>//a prime can only be divided exactly by 1 and itself;
-    //remainder indicates that it can be further divided</i>
-<b>if</b> (($number % $i)!= 0 )
-break;
-<b>array_push</b>($primeArray, $i);
+<pre><code class="code">
+<b>function</b> getPrimeAndOccurrence($number){
+    $return = <b>getPrimeNumber</b>($number); <i>// see previous snippet</i>
+    $result = array();
+    <b>for</b>($i = 0; $i < count($return); $i++){ <i>examine returns one by one</i>
+        <b>if</b> (array_key_exists($return[$i],$result)){
+            <i>//if a number has appeared, occurrence need to increase one</i>
+            $result[$return[$i]] += 1;
+        }<b>else</b>{
+            <i>//if not, set the occurrence to 1</i>
+            $result[$return[$i]] = 1;
+        }
+    }
+    <b>return</b> $result;
+}
 
-<i>// assign the result to the original number</i>
-$number = $number/$i;
+// this snippet is used for dealing with the result
+<b>for</b>($i = 0; $i < count($numbers); $i++){
+    $current = getPrimeAndOccurrence($numbers[$i]); <i>see above</i>
+    <b>foreach</b> ($current <b>as</b> $key => $value) {
+        <b>if</b> (array_key_exists($key, $result)) {
+            <b>if</b> ($result[$key] < $value)
+                <i>//always update to store the prime with highest occurrence</i>
+                $result[$key] = $value;
+            <b>else</b>
+                <i>//set the occurrence to one if it appears as 1st time</i>
+                $result[$key] = 1;
+        }
+    }
+
+    $smallestMultiple = 1;
+    <b>foreach</b>($result <b>as</b> $key => $value){
+        <i>//multiple the exponentiation</i>
+        $smallestMultiple *= <b>pow</b>($key, $value);
+    }
 }
-}
-array_push($primeArray, $number);
 </code></pre>
             </div>
             <div class="answer-icon"></div>

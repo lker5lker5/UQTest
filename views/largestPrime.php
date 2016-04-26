@@ -33,7 +33,7 @@
                     and use the result divided the next prime until it cannot further decomposed.When the prime is found,
                     it is added into the result array. Finally, the last element of the array is the result of the question.
                 </p>
-<pre><code id="code">
+<pre><code class="code">
 <b>for</b>($i = 2; $i <= $number; $i++){
     <b>while</b>($number != $i) {
         <i>//a prime can only be divided exactly by 1 and itself;

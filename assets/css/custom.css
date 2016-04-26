@@ -107,8 +107,9 @@ aside.analysis{
   padding: 35px 30px 35px 50px;
   position: relative;
 }
-div.problem-explain p>img{
+div.problem-explain p > img{
   display: inline-block;
+  width: 200px;
 }
 div.answer-icon{
   width: 63px;
@@ -130,7 +131,7 @@ div.close-icon{
   top: 10px;
   right:10px;
 }
-code#code{
+code.code{
   border: 1px solid #EEE;
   border-radius: 3px;
   background: #fffffc;
@@ -144,11 +145,27 @@ code#code{
   width: 100%;
   overflow-x: auto;
 }
-code#code b {
-  color: #7f0055 !important;
+code.code b {
+  color: #7f0055;
 }
-code#code i {
-  color: #c7c7c7 !important;
+code.code i {
+  color: #c7c7c7;
+}
+code.code-inline{
+  border: 1px solid #EEE;
+  border-radius: 3px;
+  background: #fffffc;
+  display: inline-block;
+  font-family: monospace;
+  font-size: .8em;
+  vertical-align: text-bottom;
+  padding: 2px 5px;
+  line-height: 1em;
+  max-width: 100%;
+  color: #122b40;
+}
+code.code-inline b{
+  color: darkred;
 }
 /*---------------------------------------------------Sequence area----------------------------------------------------*/
 div.sequence-solution > div.form-group{
