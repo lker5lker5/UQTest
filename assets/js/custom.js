@@ -78,14 +78,14 @@
                             $('#info_indicator').css({"visibility":"hidden"});
                             $('#info_indicator').html("");
                             $.ajax({
-                                url: window.location.href.replace(/index.*/g,'') + "dataHandler/controllers/login.php",
+                                url: window.location.href.replace(/\/index.*/g,'') + "/dataHandler/controllers/login.php",
                                 type: 'POST',
                                 data: $('#login_form').serialize(),
                                 success:function(result) {
                                     console.log(result);
                                     if(result == 1){
                                         console.log('valid');
-                                        window.location.href = window.location.href.replace(/index.*/g,'admin.php');
+                                        window.location.href = window.location.href.replace(/\/index.*/g,'/admin.php');
                                     }else{
                                         $('#info_indicator').css({"visibility":"visible"});
                                         $('#info_indicator').html("<i>Not a valid username or password!</i>");
@@ -132,7 +132,7 @@ function getAttempts(pid){
             document.getElementById('p'+ pid + '_attempts').innerHTML = xmlHttp.responseText + " attempts";
         }
     };
-    xmlHttp.open("GET", window.location.href.replace(/index.*/g,'') + "dataHandler/controllers/getProblemAttempts.php?pid=" + pid,true);
+    xmlHttp.open("GET", window.location.href.replace(/\/index.*/g,'') + "/dataHandler/controllers/getProblemAttempts.php?pid=" + pid,true);
     xmlHttp.send();
 }
 
@@ -169,7 +169,7 @@ function showP1Answer(){
                 console.log(result.insertInfo);
             }
         };
-        xmlHttp.open("GET", window.location.href.replace(/index.*/g,'') + "dataHandler/controllers/getLargestPrimeFactor.php?number=" + value,true);
+        xmlHttp.open("GET", window.location.href.replace(/\/index.*/g,'') + "/dataHandler/controllers/getLargestPrimeFactor.php?number=" + value,true);
         xmlHttp.send();
     }else{
         alert("Number only");
@@ -206,8 +206,8 @@ function showP2Answer(id){
                 target.classList.remove("blur-answer");
                 console.log(result.insertInfo);
             };
-            xmlHttp.open("GET", window.location.href.replace(/index.*/g,'') +
-                "dataHandler/controllers/getSmallestMultipleRandom.php?input=" + value,true);
+            xmlHttp.open("GET", window.location.href.replace(/\/index.*/g,'') +
+                "/dataHandler/controllers/getSmallestMultipleRandom.php?input=" + value,true);
             xmlHttp.send();
         }else{
             alert("Invalid! Format: Two numbers are separated by a dash!");
@@ -242,7 +242,7 @@ function showP2Answer(id){
             target.classList.remove("blur-answer");
             console.log(result.insertInfo);
         };
-        xmlHttp.open("GET", window.location.href.replace(/index.*/g,'') + "dataHandler/controllers/getSmallestMultipleSequence.php?start="
+        xmlHttp.open("GET", window.location.href.replace(/\/index.*/g,'') + "/dataHandler/controllers/getSmallestMultipleSequence.php?start="
             + start + "&quan=" + quan + "&inc=" + inc, true);
         xmlHttp.send();
     }
@@ -279,7 +279,7 @@ function showP3Answer(){
                 console.log(result.insertInfo);
             }
         };
-        xmlHttp.open("GET", window.location.href.replace(/index.*/g,'') + "dataHandler/controllers/getNthPrime.php?pos=" + value,true);
+        xmlHttp.open("GET", window.location.href.replace(/\/index.*/g,'') + "/dataHandler/controllers/getNthPrime.php?pos=" + value,true);
         xmlHttp.send();
     }else{
         alert("Number only! ");

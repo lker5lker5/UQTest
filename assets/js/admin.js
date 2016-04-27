@@ -7,9 +7,9 @@
          * Logout function
          */
         $('#log_out').on('click', function(){
-            window.location.href = window.location.href.replace(/admin.*/g,'index.php');
+            window.location.href = window.location.href.replace(/\/admin.*/g,'/index.php');
             $.ajax({
-                url: window.location.href.replace(/admin.*/g,'') + "dataHandler/controllers/logout.php",
+                url: window.location.href.replace(/\/admin.*/g,'') + "/dataHandler/controllers/logout.php",
                 type: "POST",
                 success: function(result){
 
@@ -38,7 +38,7 @@
                 alert("Password should at least 6-character long (letters and numbers only)!");
             }else{
                 $.ajax({
-                    url: window.location.href.replace(/admin.*/g,'') + "dataHandler/controllers/addNorUser.php",
+                    url: window.location.href.replace(/\/admin.*/g,'') + "/dataHandler/models/addNorUser.php",
                     type: "POST",
                     data: $('#add_form').serialize(),
                     success: function(result) {
@@ -81,7 +81,7 @@
                 alert("New passwords are not the same. Please have a check.");
             }else{
                 $.ajax({
-                    url: window.location.href.replace(/admin.*/g,'') + "dataHandler/controllers/updatePassword.php",
+                    url: window.location.href.replace(/\/admin.*/g,'') + "/dataHandler/models/updatePassword.php",
                     type: "POST",
                     data: $('#reset_form').serialize(),
                     success: function(result) {
@@ -119,7 +119,7 @@
                 alert("Username only accepts numbers and letters (5-10 characters)");
             }else{
                 $.ajax({
-                    url: window.location.href.replace(/admin.*/g,'') + "dataHandler/controllers/deleteUser.php",
+                    url: window.location.href.replace(/\/admin.*/g,'') + "/dataHandler/models/deleteUser.php",
                     type: "POST",
                     data: $('#delete_form').serialize(),
                     success: function(result) {
