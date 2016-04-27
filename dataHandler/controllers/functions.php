@@ -58,4 +58,12 @@ function isPrime($num){
     return $isPrime;
 }
 
+/**
+ * Clear cookies
+ */
+function clearcookies(){
+    setcookie("user",'',time()-3600);
+    setcookie("usertype",'',time()-3600);
+    setcookie("islogin",'',time()-3600);
+}
 ?>

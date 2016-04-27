@@ -26,12 +26,12 @@
         <div id="p1_solution" class="problem-explain">
             <div class="analysis-detail">
                 <p>A number is the multiple of several prime factors.
-                    <img src="assets/images/primes-analysis.jpg" alt="multiple of prime factors" />
+                    <img src="assets/img/primes-analysis.jpg" alt="multiple of prime factors" />
                 </p>
                 <p>
-                    So every time a prime is found, we can use the number divided by the first prime number to get the result,
-                    and use the result divided the next prime until it cannot further decomposed.When the prime is found,
-                    it is added into the result array. Finally, the last element of the array is the result of the question.
+                    So every time a prime is found, we can use the number divided by the prime number to get the result,
+                    and then use the result divided the next found prime until it cannot be further decomposed.When a prime
+                    is found, it is added into the result array. Finally, the last element of the array is the largest prime.
                 </p>
 <pre><code class="code">
 <b>for</b>($i = 2; $i <= $number; $i++){

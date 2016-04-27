@@ -33,6 +33,7 @@
         </footer>
         <!--Footer-->
         <a href="javascript:;" id="toTop"></a>
+        <div id="cover"></div>
         <script>
             window.onload =  function(){
                 getAttempts(1);

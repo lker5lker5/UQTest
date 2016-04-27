@@ -57,6 +57,64 @@
 })(jQuery);
 
 /**
+ * Showing the login popup window
+ */
+(function($){
+    $(function(){
+        $("#login_btn").on('click', function(){
+            $('#cover').show();
+            $("#admin_login").dialog({
+                modal: true,
+                draggable: true,
+                resizable: false,
+                //show: 'blind',
+                //close: 'blind',
+                width: 400,
+                buttons: [
+                    {
+                        text: "Login",
+                        "class":"btn btn-primary",
+                        click: function() {
+                            $('#info_indicator').css({"visibility":"hidden"});
+                            $('#info_indicator').html("");
+                            $.ajax({
+                                url: window.location.href.replace(/index.*/g,'') + "dataHandler/controllers/login.php",
+                                type: 'POST',
+                                data: $('#login_form').serialize(),
+                                success:function(result) {
+                                    console.log(result);
+                                    if(result == 1){
+                                        console.log('valid');
+                                        window.location.href = window.location.href.replace(/index.*/g,'admin.php');
+                                    }else{
+                                        $('#info_indicator').css({"visibility":"visible"});
+                                        $('#info_indicator').html("<i>Not a valid username or password!</i>");
+                                    }
+                                }
+                            });
+                        }
+                    },
+                    {
+                        text: "Cancel",
+                        "class":"btn btn-default",
+                        click: function() {
+                            $(this).dialog('option','hide','explode');
+                            $(this).dialog("close");
+                            $('#cover').hide();
+                        }
+                    }
+                ],
+                close: function(){
+                    $("#cover").hide();
+                    $(this).dialog("close");
+                    $('#cover').hide();
+                }
+            });
+        });
+    });
+})(jQuery);
+
+/**
  * The method of getting the number of attempts of a specific problem
  * @param pid: the id represents the problem
  */

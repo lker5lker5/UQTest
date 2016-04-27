@@ -1,16 +1,26 @@
 html,body{
   width:100%;
+  height:100%;
 }
 body{
   position: relative;
 }
 /*======================================================================================================================
+ *  helper classes
+ *====================================================================================================================*/
+.indicator-visible {
+  visibility: visible !important;
+}
+
+/*======================================================================================================================
  *  The nav
  *====================================================================================================================*/
+header#web_header{
+  background: #3b67a7;
+}
 header#web_header  h1{
   margin: 0 !important;
   padding: 20px 10px;
-  background: #3b67a7;
   color: #f2f2f2;
 }
 
@@ -44,6 +54,9 @@ nav#problem_list_header li:last-child {
  *====================================================================================================================*/
 section#main_content{
   margin-top: 20px;
+}
+section#main_content legend{
+  text-align: center;
 }
 section#main_content > article {
   margin-bottom: 15px;
@@ -91,7 +104,7 @@ div.explain-indicator{
 div.question-icon{
   width: 71px;
   height: 71px;
-  background: url('../images/question-mark.png');
+  background: url('../img/question-mark.png');
   background-size: 71px 71px;
   left: -36px;
   margin-top: -46px;
@@ -114,7 +127,7 @@ div.problem-explain p > img{
 div.answer-icon{
   width: 63px;
   height: 63px;
-  background: url("../images/answer-arrow.png");
+  background: url("../img/answer-arrow.png");
   background-size: 63px 63px;
   left: -32px;
   margin-top: -32px;
@@ -125,7 +138,7 @@ div.close-icon{
   cursor:pointer;
   width:30px;
   height:30px;
-  background: url("../images/close-icon.png");
+  background: url("../img/close-icon.png");
   background-size: 30px 30px;
   position:absolute;
   top: 10px;
@@ -175,6 +188,7 @@ div.sequence-solution > div.form-group{
  * Footer part
  *====================================================================================================================*/
 footer#web_footer {
+  width: 100%;
   background: #222;
   padding: 20px 15px;
   text-align: center;
@@ -209,8 +223,57 @@ nav#problem_list_footer > ul > li > a {
 .copyright p a {
   color:#FFF;
 }
+
 /*======================================================================================================================
- * toTop icon
+ * Popup styling
+ *====================================================================================================================*/
+.ui-dialog-osx {
+  -moz-border-radius: 0 0 8px 8px;
+  -webkit-border-radius: 0 0 8px 8px;
+  border-radius: 0 0 8px 8px;
+  border-width: 0 8px 8px 8px;
+}
+div#admin_login{
+  display: none;
+}
+
+.ui-dialog {
+  border:5px solid #cccccc;
+  border-radius: 4px;
+  padding: 0px !important;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.ui-dialog-content, .btn-default {
+  color: #6e0023;
+}
+.ui-widget-header {
+  background: #3b67a7;
+}
+.ui-corner-all {
+  border-radius: 0;
+}
+.ui-dialog-title {
+  color: #fff;
+}
+.ui-dialog-buttonpane {
+  border-width: 0;
+}
+div#admin_login > span {
+  font-size: 14px;
+  font-weight: bold;
+  font-family: monospace;
+  color: #f2f2f2;
+  visibility: hidden;
+  background: darkred;
+  border: none;
+  display: block;
+  line-height: 24px;
+  width: 100%;
+  text-align: center;
+}
+
+/*======================================================================================================================
+ * toTop icon and cover
  *====================================================================================================================*/
 a#toTop{
   display: none;
@@ -223,5 +286,29 @@ a#toTop{
   height: 32px;
   border: none;
   text-indent: 100%;
-  background: url('../images/top-arrow.png') no-repeat;
+  background: url('../img/top-arrow.png') no-repeat;
+}
+
+div#cover{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.8);
+  display: none;
+  z-index: 11;
+}
+
+/*======================================================================================================================
+ * admin indicator information
+ *====================================================================================================================*/
+p#add_indicator, p#reset_indicator, p#delete_indicator{
+  font-size: 14px;
+  font-weight: bold;
+  font-family: monospace;
+  border: none;
+  line-height: 24px;
+  width: 100%;
+  text-align: center;
 }

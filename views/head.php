@@ -9,8 +9,9 @@
     <title>UQ Application - Kaner Lu </title>
 
     <!--CSS Files-->
-        <!--reset-->         <link rel="stylesheet" href="assets/css/normalize.css">
         <!--bootstrap3.3.6--><link rel="stylesheet" href="assets/css/bootstrap336.css">
+        <!--jQuery UI-->     <link rel="stylesheet" href="assets/css/jquery-ui.css">
+        <!--reset-->         <link rel="stylesheet" href="assets/css/normalize.css">
         <!--custom-->        <link rel="stylesheet" href="assets/css/custom.css">
         <!--media query-->   <link rel="stylesheet" href="assets/css/responsive.css">
         <!--animation-->     <link rel="stylesheet" href="assets/css/animation.css">

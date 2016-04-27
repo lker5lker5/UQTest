@@ -56,7 +56,7 @@
         <div id="p2_solution" class="problem-explain">
             <div class="analysis-detail">
                 <p>The calculation of the smallest multiple is shown in the picture .
-                    <img src="assets/images/smallest-multiple.png" alt="the calculation of smallest multiple" />
+                    <img src="assets/img/smallest-multiple.png" alt="the calculation of smallest multiple" />
                 </p>
                 <p>
                     So what we need to do is to decompose each number recording the occurrences of each prime of that number;
