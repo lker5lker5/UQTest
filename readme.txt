@@ -79,8 +79,10 @@ $dbcfg = array(
     You can simply upload to the target folder depending on which server you are 
     going to host the web application.
 
-    *=> when hosting on the web sever, it is necessary to add /index.php at
-        the end of the url, i.e.http://uqtest-kaner.rhcloud.com/index.php
+    *=> when hosting on the web sever, it is better to add /index.php at
+        the end of the url when you try to visit the site, 
+	i.e.http://uqtest-kaner.rhcloud.com/index.php
+
 ==============================================================================
 3. Technologies
 ------------------------------------------------------------------------------
