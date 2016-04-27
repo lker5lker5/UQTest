@@ -14,4 +14,4 @@ CREATE TABLE users(
     password VARCHAR(32) NOT NULL,
     userrole int(1) NOT NULL
 );
-INSERT INTO users ('username','password','userrole') VALUES ('admin','21232f297a57a5a743894a0e4a801fc3', 1);
+INSERT INTO users VALUES ('admin','21232f297a57a5a743894a0e4a801fc3', 1);

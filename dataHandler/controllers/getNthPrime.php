@@ -28,5 +28,4 @@
 
     $result = array('result'=>$nth, 'time'=>$time, 'insertInfo'=>$insertInfo);
     echo json_encode($result);
-var_dump($primes);
 ?>

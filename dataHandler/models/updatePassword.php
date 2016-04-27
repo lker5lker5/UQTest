@@ -6,7 +6,7 @@
  * Time: 6:54 PM
  */
 
-    include 'functions.php';
+    include '../controllers/functions.php';
     include '../dbCfg.php';
 
     $user = $_COOKIE['user'];

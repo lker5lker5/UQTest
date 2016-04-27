@@ -3,26 +3,24 @@
  * Created by IntelliJ IDEA.
  * User: vinson
  * Date: 27/04/16
- * Time: 5:15 PM
+ * Time: 7:09 PM
  */
-    include 'functions.php';
+    include '../controllers/functions.php';
     include '../dbCfg.php';
 
-    $username = $_POST['user'];
-    $password = md5($_POST['pass']);
+    $user = $_POST['username'];
+
     $conn = new mysqli($dbcfg['dbhost'], $dbcfg['dbuser'], $dbcfg['dbpwd'], $dbcfg['dbname']) or die ("Cannot connect to the DB!");
 
     if(!$conn) {
         die("Connection Failed: " . mysqli_connect_error());
     }
 
-    $check = "INSERT INTO users VALUES ('$username', '$password', 0);";
-    $result = mysqli_query($conn, $check);
-    if($result){
+    $deletion = "DELETE FROM users WHERE username = '$user'";
+    if(mysqli_query($conn, $deletion)){
         echo 1;
     }else{
-        echo "Error: " . $check . "<br>" . mysqli_error($conn);
+        echo "Error: " . $deletion . "<br>" . mysqli_error($conn);
     }
 
-    mysqli_close($conn);
-?>
+mysqli_close($conn);
