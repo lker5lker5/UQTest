@@ -26,6 +26,9 @@ Assumption:
        it can be further extended to become a forum to sharpen problem solving
        skills
 
+Test Login Account:
+    => username: admin
+    => password: admin
 ==============================================================================
 1. Basic Structure
 ------------------------------------------------------------------------------
